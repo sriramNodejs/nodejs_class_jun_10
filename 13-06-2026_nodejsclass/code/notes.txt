@@ -1,0 +1,102 @@
+Download Nodejs Software -> install it 
+
+Command -> Node 
+node --version or node -v
+
+NPM -> Node Package Manager (by default comes with nodejs)
+Yarn, Pnpm (alternate to NPM )
+
+check version -> npm --version or npm -v
+
+IDE -> Integrated Development Environment 
+VS Code -> Recommended IDE 
+
+
+
+// Run the JS in your Computer 
+
+Running JS 
+1. Browser  
+    1.1 Script Tag
+    1.2 Linking a JS file by Script src tag
+2. Nodejs 
+
+REPL -> Read Evaluate Print Loop 
+By using CLI we can run simple js 
+how to start REPL -> 
+cmd> node  
+
+
+Nodejs Global objects 
+
+1. global   -> 
+2. process  -> api keys, API port, Database credentials , (process.env)
+3. console  -> Debugging , printing the logs (in the terminal)
+4. __dirname -> 'public', __dirname + 'public' -> we can store the files 
+5. __filename -> working on current file path.extname() -> extension name of the current file 
+6. Buffer  -> images , files, 
+
+
+window
+document 
+
+window.document
+document
+
+all global objects linked to 'global' variable
+
+global.console.log() 
+console.log()
+
+
+// Module Systems 
+
+Module -> 
+A collection of functionalities  is called module 
+
+Module System -> Set of rules for importing and exporting of modules .
+
+Two Module System is there 
+1. CJS (CommonJS) -> ByDefault 
+2. ESM (ECMAScript Modules)
+
+Project in Nodejs -> package.json (index file)
+
+Initialize a project in Nodejs 
+in the terminal 
+    npm init
+
+    it ask some questions
+        project name
+        version
+        tags
+        script 
+        entrypoint 
+
+if you dont want to give answers 
+    in the terminal 
+        npm init -y
+
+type -> module (for using of ESM);
+
+// Modules 
+1. Inbuild or Built in Modules  (comes by default in the nodejs )
+    1.1 FS (file system);
+    1.2 OS (Operating System)
+    1.3 HTTP 
+    1.4 Path
+        Crypto
+        DNS
+        Utils 
+
+2. Custom Modules (Based on your Project Requirement)
+
+3. Third Party Modules 
+
+express, mongoose, dotenv 
+
+you have to install these modules 
+
+Repository for Third party modules in nodejs -> npmjs 
+
+

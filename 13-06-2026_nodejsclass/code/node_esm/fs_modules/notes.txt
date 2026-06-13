@@ -1,0 +1,28 @@
+what is FS modules .
+
+It is a build in module in nodejs ,
+by using this module we can work with file system 
+
+Nodejs code (in js)
+    |
+Event Loop or Main thread (depends upon the program (sync or async))
+    |
+CPU
+    |
+Writes in Hard Disk or SSD 
+    | 
+You get Your Response 
+
+
+We can use FS in three ways 
+1. Synchronous way 
+    fs.readFileSync
+2. Asynchronous way
+    2.1 Callbacks 
+    2.2 Promises  
+        2.2.1 Then catch 
+        2.2.2 Async await 
+
+
+
+It is recommended that we have to use Asynchronous programming 
