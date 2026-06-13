@@ -2,7 +2,7 @@
 
 <p align="right">
   <button><a href="class_content.md">⬅️ Previous</a></button> |
-  <button><a href="03-global-objects.md">Next ➡️</a></button>
+  <button><a href="03-global_objects.md">Next ➡️</a></button>
 </p>
   <
 
@@ -512,9 +512,9 @@ In this chapter, we learned:
 ➡️ Global Objects
 
 <p align="left">
-  <buttom   <a href="class_content.md">⬅️ Previous</a>
+  <button><a href="class_content.md">⬅️ Previous</a></button>        
 </p>    
 
 <p align="right">
-  <<a href="03-global-objects.md">Next ➡️</a>
+  <button><a href="03-global_objects.md">Next ➡️</a></button>
 </p>
