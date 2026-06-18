@@ -1,0 +1,7 @@
+you are wanting to store credentials ?
+
+
+we are storing as environment variables .
+it is secured than storing in GIT 
+
+.env  -> bydefault it is not visible 

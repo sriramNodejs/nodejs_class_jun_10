@@ -1,0 +1,32 @@
+what is HTTP ?
+HyperText Transfer Protocol 
+
+RESTful or REST API's
+
+Representational State Transfer (REST)ful  Application Programming Interface (API);
+
+REST -> one server will communicate with another server 
+
+3000 (my computer)-> server 
+
+REST -> HTTP 
+
+5000 (my computer ) -> server 
+
+
+HTTP -> 
+Method Types 
+1. GET -> fetching Data
+2. POST -> Creating a resource in server or database
+3. PUT -> Updating the Resource 
+4. PATCH  -> Partial update 
+5. DELETE -> Deleting the resource in server 
+
+// Status codes -> 
+200 -> Successful , ok
+201 -> Created 
+400 -> Bad Request 
+401 -> Unauthorized 
+403 -> Forbidden (admin, manager, employee) -> Permission issues
+404 -> Resource Not Found 
+500 -> internal server error 
