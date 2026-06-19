@@ -1,0 +1,7 @@
+creaeat a app.js
+
+create a folder Router
+
+in that router -> products routes (get, post , put , delete);
+
+create 2 middlewares and register that middlewares in the complete product router.
