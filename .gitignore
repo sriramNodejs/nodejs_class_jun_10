@@ -5,3 +5,10 @@ package-lock.json
 
 .log
 logs
+
+public
+uploads
+
+.jpg
+.jpeg
+.png
