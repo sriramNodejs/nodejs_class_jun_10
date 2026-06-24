@@ -1,0 +1,40 @@
+Scale -> 
+
+Going to Big (Large)
+
+Large Scale 
+Small Scale 
+Medium scale 
+
+Scale Our Application ?
+
+what is before scaling ?
+nodejs server is running on single core .
+
+You have a server of 8 cores,
+if you run the server it will occupy only one core.and other 7 cores are remain idle .
+one core -> 1000 reqests per second 
+8 cores -> 8 * 1000 requests per second 
+
+
+1. inbuild cluster module 
+2. PM2 Module (third party)
+
+
+
+install any module global 
+npm install -g pm2
+
+
+pm2 start <index no or app name>
+pm2 stop <index no or app name>
+
+pm2 restart <index no or app name>
+pm2 ls 
+pm2 delete <index no or app name>
+
+
+for max clusters use pm2 ->    pm2 start pm2_index.js -i max
+before this command all pm2 clusters become empty
+
+pm2 start pm2_index.js -i <number_of_instances>
