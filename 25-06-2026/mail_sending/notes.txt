@@ -1,0 +1,9 @@
+SMTP -> simple mail Transport Protocol 
+
+HTTP -> 
+
+
+for sending mails we use nodemailer
+
+
+nodemailer documetation ->  https://nodemailer.com/

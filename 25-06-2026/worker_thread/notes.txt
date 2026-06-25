@@ -1,0 +1,13 @@
+Worker threads
+
+what is main thread ?
+
+this is the primary execution point , 
+
+
+why worker threads ?
+
+if any heavy computation tasks is there you can use worker threads , 
+
+and you can use async task so that it will off load to the event loop making main thread emptier for accepting incoming requests .
+
