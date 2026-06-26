@@ -1,0 +1,181 @@
+Database;
+
+
+what is Data -> 
+
+Data is the collection of facts and figures 
+
+facts -> how many students passed 
+figures -> 50/100 
+
+what is the information -> 50% pass rate 
+
+information is the procssing of data -> processed data is called information
+
+
+To store data we use database;
+
+without database can we store ?
+
+Disk storages -> Files system
+
+
+why we store in database and why not in file system ?
+
+for retrival -> get the data or Quering the data (database has much faster retrival as compared to file system);
+
+
+what is DBMS;(Database management system) -> why we have to manage ?
+because storing and managing is easier (
+    Fetching -> Retriving -> Querying -> take the data from database 
+    Creating the data 
+    Updating the data 
+    Deleting the data
+)
+
+DBMS is a special type of software which store and manage data efficiently.
+
+
+Different types of databases are there .
+
+based on type of data 
+
+if data type is tablular format -> SQL (Structured Query Language) -> RDBMS
+if the format is not tabular format -> NoSQL 
+    1. Document based Database (MongoDB, DynamoDB)
+    2. Key-Value Store (Redis)
+    3. Graph based Database (Neo4j, ArangoDB)
+    4. Columnar Database (Cassandra, HBase)
+
+    MongoDB, Redis 
+    why mongodb is famous with nodejs 
+    mongodb is developed by using JavaScript , and mongodb is uses spidermonkey JS engine.
+
+    Redis is a key value store . and redis is present in our RAM (random access memeroy) and it is way faster than any database 
+
+
+    DBMS has differnt functionlities 
+    1. store data
+    2. Retrive data 
+    3. update
+    4. delete 
+    5. security (we can use password and users with previlages)
+    6. backup 
+    7. restore (or recovery)
+
+
+what is the benifit of non relational database (mongodb)
+
+1. mongodb is a document storage format
+2. it is flexible schema
+3. scalable 
+4. mongodb uses json format like documents (BSON -> Binary formt of JSON) 
+5. sutiable for large scale applications and microservices
+
+where we can use  mongodb 
+
+1. Social media applciation
+2. chat application
+3. e commerce application
+4. gaming
+
+in  the database we have constraints 
+
+what is constraints 
+constraints are rules applied to database to maintain data accuracy and integity.
+
+different types of constraints 
+
+1. Primary key -> it is unique to every document (_id in the mongodb);
+2. foreign key -> in mongodb foreign key is present is ObjectId format , it establish relation between two tables (collections)
+
+users table 
+orders table -> userId 
+
+3. Not null -> it will not accepts null values
+4. Unique -> it will not accept duplicate values (in general we use for email)
+5. Default -> if you not give anything it will store the default value
+
+
+
+ACID  Properties 
+what is ACID -> 
+A -> Atomicity  -> either all operations happens or none 
+C -> Consistency -> data is always valid 
+I -> Isolation   -> multiple Transactions will never collide
+D -> Durability  -> committed (success) data will never los 
+
+Transactions -> 
+
+if one of the operation will failed all operations  has rollbak (undo)
+
+1. debit 100 from the user (success)
+2. create a order failure 
+3. remove the product quantity by -1    failure
+
+
+// separate Transactions
+1. debit 100 from the user (success)
+2. create a order failure 
+3. remove the product quantity by -1    failure
+
+// Result: All operations are rolled back
+// User balance is restored to original value
+// Product quantity remains unchanged
+
+what is the difference between mongodb and SQL database 
+
+in mongodb or SQL -> A single database software has multiple databases
+
+
+MongoDB                             SQL 
+
+Database                            Database
+
+
+inside database 
+Collections                         Tables 
+
+
+Inside collections                  Inside Tables 
+Documents                           Rows and Columsn 
+
+
+inside the documents                inside the Rows and Columsn 
+key values                          cells 
+
+
+
+how can we use mongodb ?
+
+we have two ways ?
+
+1. install the mongdb software 
+2. Using Docker 
+    2.1 RUn the docker-compose.yml
+    2.2 Docker command 
+
+
+1. install the mongdb software 
+in google -> mongodb community server download  and then install -> select complete 
+
+2. Using Docker 
+    what is Docker (Docker is a conntainerized Tool) -> we can use any software we want 
+    befor uisng docker 
+        you have to install Docker 
+            in windows -> Docker Desktop (download docker desktop) and install 
+                search in google -> docker for windows -> go to first link 
+
+
+in any database you access using 3 ways 
+1. CLI -> command line Interface
+2. Programmetically -> Nodejs, Java, Python, Dotnet 
+3. GUI -> Graphical User interface 
+
+
+download mongodb compass 
+
+
+1.    create a docker-compose.yml 
+2.    to create the container -> docker compose up -d
+3.    to stop the container -> docker compose stop 
