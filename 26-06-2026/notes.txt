@@ -179,3 +179,19 @@ download mongodb compass
 1.    create a docker-compose.yml 
 2.    to create the container -> docker compose up -d
 3.    to stop the container -> docker compose stop 
+4.    to remove the container -> docker compose down
+5.    to start the existing container -> docker compose start
+6.    to view the running containers -> docker compose ps
+7.    to restart the containers -> docker compose restart
+8.    to restart and rebuild -> docker compose up -d --build
+
+
+
+// for single container 
+1. stop the container -> docker stop mongodb_class_26_06_2026
+2. start the container -> docker start mongodb_class_26_06_2026
+3. remove the container -> docker rm mongodb_class_26_06_2026
+4. view container logs -> docker logs mongodb_class_26_06_2026
+
+go to the container -> docker exec -it mongodb_class_26_06_2026 bash
+5. exit the container -> exit

@@ -1,0 +1,25 @@
+Middlewares
+
+Middleware are special type of function which effect request and response cycle .
+
+
+Middleware sits between your Route and ROute Handler.
+
+Different types of middlewares.
+
+1. Application-level middleware -> app.use(express.json())  // for parsing the JSON data
+2. Router Level Middleware
+3. Route Level Middleware
+4. Error Handling Middleware  -> after all endpoints and routes (at the last )
+5. Built in Middeware
+
+6. Third Party Middleware
+7. Custom Middleware 
+
+
+usage of middleware
+1. Logging 
+2. Validation
+    Header validation
+    input validation 
+    RBAC (Role Based Access Control)
