@@ -160,4 +160,4 @@ db.test_collection.insertMany([
     "name":"python",
     age: 10
     },
-])
+]);
