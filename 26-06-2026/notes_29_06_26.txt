@@ -1,0 +1,24 @@
+// Query Operations 
+
+insert into employee
+
+db.employees.insertOne({
+  name: "Aarav Mehta",
+  age: 29,
+  salary: 72000,
+  department: "IT",
+  status: "Active",
+  skills: ["Node.js", "MongoDB"],
+  address: {
+    city: "Hyderabad",
+    state: "Telangana",
+    country: "India"
+  },
+  projects: [
+    { name: "Billing System", budget: 65000 },
+    { name: "HR Portal", budget: 45000 }
+  ],
+  joiningDate: ISODate("2024-05-10")
+})
+
+db.employees.findOne({_id:ObjectId('6a427a3c920d11d9c59df8b7')});
