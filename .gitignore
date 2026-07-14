@@ -1,0 +1,14 @@
+node_modules/
+package-lock.json
+
+.env
+
+.log
+logs
+
+public
+uploads
+
+.jpg
+.jpeg
+.png

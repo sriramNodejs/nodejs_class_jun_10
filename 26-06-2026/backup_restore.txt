@@ -1,0 +1,67 @@
+without docker
+by using mongodb tools
+
+https://www.mongodb.com/try/download/database-tools
+
+in terminal -> mongorestore
+if this mongorestore is not working , you have to set in environment variables
+
+c:program files/mongodb/server/bin (paste this inside the path)
+
+with docker
+mongodump, mongorestore
+it will store in the docker container (the backup files), copy and paste the files in your local
+
+in local the below command
+
+mongodump --uri="mongodb://root:secretpassword@localhost:27013/?authSource=admin" --out=/tmp/nodejs
+
+in docker
+
+docker exec mongodb_class_26_06_2026 mongodump \
+ --uri="mongodb://root:secretpassword@localhost:27017/?authSource=admin" \
+ --db=test_db \
+ --out=/tmp/backup_class
+
+copy from docker to your current folder
+
+docker cp mongodb_class_26_06_2026:/tmp/backup_class ./
+
+
+if files are there in your local, copy to the container 
+
+docker cp ./backup mongodb_test_server:/tmp/backup_class/test_db
+
+and run this command to restore the database:
+
+  docker exec mongodb_class_26_06_2026 mongorestore \
+  --uri="mongodb://root:secretpassword@localhost:27017/?authSource=admin" \
+  --db=test_classes \
+  --drop \
+  /tmp/backup_class/test_db
+
+
+
+A -> Atomicity
+C -> consistancy 
+I -> isolation
+D -> Durability
+
+
+Transactions are ACID COmpliance, means 
+
+
+
+Replication means Duplication 
+
+Replica Set -> Database have to at least one Replica set for transactions otherwise we can't use transactions 
+
+Different Replica set are there
+
+1. Read Replica   -> many read replica 
+2. Write Replica  -> only one write Replica (adding, removing, updating)
+
+
+Replica means -> copy of the database 
+
+if write replica is crashed or died, automatic election process will initiated and then , after that one replica who won that become write replica and other replicas are becoming read replicas.

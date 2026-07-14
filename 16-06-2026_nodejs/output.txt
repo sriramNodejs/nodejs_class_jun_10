@@ -1,0 +1,4 @@
+this is a write stream
+this is a write stream 1
+this is a write stream 2
+this is a write stream 3

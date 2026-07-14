@@ -1,0 +1,44 @@
+express is a third party module 
+express want some other modules -> that other modules want some other modules -> 
+
+
+how to install module
+
+1. npm install <module_name>
+2. npm i <module_name>
+
+I dont want the module 
+i have to uninstall it .
+
+1. npm uninstall <module_name>
+
+
+Dependencies (modules)
+1. Main Dependencies 
+2. Dev Dependencies
+
+Main Dependencies 
+it is used in your project (core project)
+
+Dev Dependencies
+it is used for development purpose (only developers are using) and it is used during development of project
+
+
+how to install dependency 
+
+1. npm install <module_name>
+2. npm install <module_name> --save
+
+
+How to install Dev Dependency 
+1. npm install <module_name> --save-dev
+2. 1. npm install -D <module_name> 
+
+
+1. inside Live servers (Production servers) 
+
+these commands to install only dependencies (used in production)
+
+npm i --production
+npm i --omit-dev
+

@@ -1,0 +1,13 @@
+Mongoose 
+
+
+Mongodb -> Database -> is a server 
+
+mongodb has NPM package -> mongodb
+
+what is mongoose -> ODM (Object Document Mapper)
+
+ORM (Object Relation Mapper) -> SQL 
+
+also mongoose is a middleware between mongodb and our nodejs code 
+

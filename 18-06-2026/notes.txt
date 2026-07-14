@@ -1,0 +1,41 @@
+NPM is a package manager which comes by default with Nodejs.
+
+competetors of NPM
+yarn
+pnpm
+
+Before using third party modules you have to create a project 
+how ?
+
+npm init  (hit enter)
+
+what is the project name
+version
+auther 
+tags
+
+
+a file will be created -> package.json 
+
+if you want to skip questions you can use 
+npm init -y 
+
+inside package.json you have information about -> packages (third party modules)
+1. Dependencies
+2. Devdependences
+
+scripts 
+
+
+--save (dependency) or if you dont give any flag 
+
+Dev Dependency
+--save-dev 
+-D
+
+
+dotenv
+
+
+Debug
+To find the error.

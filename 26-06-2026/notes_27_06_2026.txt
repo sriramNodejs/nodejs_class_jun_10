@@ -1,0 +1,163 @@
+GUI 
+
+mongodb compass is the GUI of mongodb
+
+other GUI 
+1. studio 3t
+2. NoSQL Booster 
+
+
+every database is a server only 
+server has PORTS -
+
+the default port of mongodb is 27017
+
+
+
+shell
+1. if you use mongodb with community server , you have to download mongo shell 
+search in google -> mongoshell download
+
+go to this website -> https://www.mongodb.com/try/download/shell
+
+
+mongosh "mongodb://localhost:2701"
+
+2. if you use mongodb with docker , shell is automatically comes you can go to the docker container and use the shell
+
+
+go to the docker container -> 
+
+docker exec -it mongodb_class_26_06_2026 bash
+
+
+container shell authentication
+mongosh "mongodb://root:secretpassword@localhost:27017/?authSource=admin"
+
+
+Local computer 
+mongosh "mongodb://root:secretpassword@localhost:27013/?authSource=admin"
+
+
+
+give the list of databases;
+show databases
+
+how to create a database;
+
+use <db_name>
+then create a collection otherwise database will not created ;
+
+how to create a collection
+db.createCollection("nodejs_collection");
+
+
+how to delete database;
+
+use <database_name>
+db.dropDatabase();
+
+
+nodejsdb> db.dropDatabase();
+{ ok: 1, dropped: 'nodejsdb' }
+nodejsdb> 
+
+
+how to see collection
+show collections;
+
+
+how to see documents inside collection;
+
+db.<collection_name>.find({});
+
+
+how to create collection;
+db.createCollection("<collection_name>");
+
+
+how to drop collection;
+db.<collection_name>.drop();
+
+
+// how to rename collection
+db.<collection_name>.renameCollection("<new_collection_name>");
+
+
+
+create a document inside collection;
+
+db.test_collection.insertOne({
+"name":"nodejs",
+age: 10
+})
+
+
+// insert many documetns
+db.test_collection.insertMany([
+    {
+    "name":"nodejs",
+    age: 10
+    },
+     {
+    "name":"expressjs",
+    age: 9
+    },
+    {
+    "name":"react",
+    age: 7
+    },
+    {
+    "name":"angular",
+    age: 7
+    },
+]
+);
+
+querying -> 
+
+db.test_collection.find({});
+
+db.test_collection.find({"age":7});
+
+db.test_collection.find({"age": { $lt:8}});
+
+
+update command 
+db.test_collection.find({"age":10});
+db.test_collection.updateOne({ age: 10 }, {$set: {"number":1}})
+
+db.test_collection.updateMany({ age: 10 }, {$set: {"id":1}})
+
+
+how to delete a document 
+db.test_collection.deleteOne({ age: 10 });
+
+
+to delete multiple documetns;
+
+db.test_collection.deleteMany({ age: 10 });
+
+db.test_collection.countDocuments({ age: 10 });
+
+
+what is the benifit of mongodb;
+
+it can store structured, unstructured and semi structured data 
+
+
+
+db.test_collection.insertMany([
+    {
+    "name":"nodejs",
+    age: 10
+    },
+     {
+    "name":"java",
+    age: 10
+    },
+     {
+    "name":"python",
+    age: 10
+    },
+]);

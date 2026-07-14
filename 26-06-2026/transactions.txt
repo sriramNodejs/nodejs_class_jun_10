@@ -1,0 +1,104 @@
+Perfect. Transactions is the next important topic after indexing.
+
+In MongoDB, transactions let you commit or rollback multiple operations as one unit, so either all succeed or all fail.
+
+Use transactions for your case
+Example: move bonus amount from one employee review record to another, and log the transfer.
+
+Prerequisite
+
+Transactions need replica set or sharded cluster.
+Standalone MongoDB does not support multi-document transactions.
+In Docker local setup, run MongoDB as single-node replica set for practice.
+
+
+const session = db.getMongo().startSession();
+const testDb = session.getDatabase("test");
+
+try {
+  session.startTransaction();
+
+  testDb.performance_reviews.updateOne(
+    { employee_id: ObjectId("6a37b8dc74c5f211f19df8a3"), reviewYear: 2023 },
+    { $inc: { bonus: -1000 } }
+  );
+
+  testDb.performance_reviews.updateOne(
+    { employee_id: ObjectId("6a37b8dc74c5f211f19df8a4"), reviewYear: 2023 },
+    { $inc: { bonus: 1000 } }
+  );
+
+  testDb.bonus_transfers.insertOne({
+    fromEmployee: ObjectId("6a37b8dc74c5f211f19df8a3"),
+    toEmployee: ObjectId("6a37b8dc74c5f211f19df8a4"),
+    amount: 1000,
+    createdAt: new Date()
+  });
+
+  session.commitTransaction();
+  print("Transaction committed");
+} catch (e) {
+  session.abortTransaction();
+  print("Transaction aborted: " + e.message);
+} finally {
+  session.endSession();
+}
+
+
+Node.js transaction flow
+
+import { MongoClient, ObjectId } from "mongodb";
+
+const client = new MongoClient("mongodb://root:secretpassword@localhost:27019/?authSource=admin");
+
+async function run() {
+  await client.connect();
+  const db = client.db("test");
+  const session = client.startSession();
+
+  try {
+    await session.withTransaction(async () => {
+      await db.collection("performance_reviews").updateOne(
+        { employee_id: new ObjectId("6a37b8dc74c5f211f19df8a3"), reviewYear: 2023 },
+        { $inc: { bonus: -1000 } },
+        { session }
+      );
+
+      await db.collection("performance_reviews").updateOne(
+        { employee_id: new ObjectId("6a37b8dc74c5f211f19df8a4"), reviewYear: 2023 },
+        { $inc: { bonus: 1000 } },
+        { session }
+      );
+
+      await db.collection("bonus_transfers").insertOne(
+        {
+          fromEmployee: new ObjectId("6a37b8dc74c5f211f19df8a3"),
+          toEmployee: new ObjectId("6a37b8dc74c5f211f19df8a4"),
+          amount: 1000,
+          createdAt: new Date()
+        },
+        { session }
+      );
+    });
+
+    console.log("Transaction committed");
+  } catch (err) {
+    console.error("Transaction failed:", err.message);
+  } finally {
+    await session.endSession();
+    await client.close();
+  }
+}
+
+run();
+
+
+Best practices
+
+Keep transactions short.
+Avoid user input waits inside a transaction.
+Include all writes with the same session.
+Add retry logic for transient transaction errors.
+Index your filter fields to reduce lock time.
+
+

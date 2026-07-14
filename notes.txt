@@ -1,0 +1,113 @@
+NodeJS 
+
+Nodejs is a Javascript Runtime Environment(RTE).
+
+Javascript, Java, C#.
+
+Browsers -> Javascript Engines 
+
+// Chrome -> V8 
+Nodejs is build on the top of V8 engine , with some additional functionality
+// Mozilla firefox -> Spider Monkey
+// Edge -> Chakra
+
+
+// why Nodejs 
+Nodejs is run on outside the browser, primarily servers. (to create servers, web  applications )
+
+Javascript -> Nodejs (outside the browser), browsers
+Java -> JRE (java runtime Environment)
+C# -> CLR (common Language Runtime Environment);
+
+
+Why Nodejs ?
+1. One Language for All Stack \
+
+
+Frontend Programming -> HTML, CSS, JS , (React, Vue , Svelte); 
+Backend Programming -> NodeJS -> Javascript as a Language;
+Database -> MongoDB -> Javascript (Spider Monkey)
+
+MERN Stack 
+
+2. Very fast as compared to other Multithreaded Programming Languages
+
+Threads -> Execution of Tasks
+Java, Python, PHP -> Multithreaded Programming Languages (100,000 request are coming 100,000 threads which blocks the code )
+
+Nodejs is a single threaded Programming Language, -> Event Loop is there which manage all incoming async requests.
+
+3. Developer community and A large Package Repository called npmjs 
+
+4. Realtime applications (Games, chatting )
+
+
+Demerits
+1. Video Rendering 
+
+
+
+
+Internal Architechture of Nodejs 
+
+
+Main Thread -> Event Loop -> Thread Pool -> OS Kernel (CPU) -> After done Work -> Event Loop will give Response -> Main Thread -> will give the response to the incoming Request 
+
+
+Event Loop 
+
+Event Loop is a contineous Operation, which checks for Async functionality , if Event Loop will get any Async functions it will attach a tread from thead Pool and then , CPU wil take care of the Task .
+
+
+What is Nodejs ?
+
+Nodejs is a Open Source(any one can use), Cross Platform (Any OS can use like windows, Linux, Mac etc.) Javascript Runtime Environment used for Building Server side Web applications(APIs, servers). 
+
+Nodejs is Single threaded , Event Driven, Non Blocking I/O (Input output) architecture 
+
+Nodejs is not a Programming Language, or not a framework, not a library .
+
+
+What is Event Loop in Nodejs ?
+
+
+Event Loop is the core functionality of the nodejs which executes the async functionality .if main thread encounters some async functionality it will offload to the Event loop , and event loop will handle and give appropriate Response.
+
+
+
+Architecture of Event Loop .
+
+1. MicroTask Queue ->  
+    in micro task queue, two queues are there 
+    1. Process.nexttick queue
+    2. Promises Queue
+
+2. Timer Queue 
+    In timer queue two functions are there
+    1. Settimeout 
+    2. Setinterval
+
+3. I/O Queue
+    1. file Operation
+    2. Network request
+
+4. Setimmidiate Queue or Check queue
+
+5. Closed Callback Queue
+    socket.on('close')
+
+
+
+1. what is the differnce between Process.nexttick and Setimmidiate ?
+Process.nexttick will execute after this currenct executed program but Setimmidiate will execute after the next iteration of the event loop 
+
+
+Javascript is a synchronous Programming language , we can do async programming by callbacks , promises and async await 
+
+Overview 
+1. what is nodejs
+2. Advantages
+3. Disadvantages
+4. Internal architecture of nodejs
+5. Event Loop 
+6. Internal architecture of Event Loop 

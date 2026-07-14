@@ -1,0 +1,17 @@
+Logging 
+
+Logging is important for Server maintance , 
+it will keep track on the incoming requests  and response
+
+There are differnt logging modules are there 
+
+1. morgan 
+2. winston 
+
+
+
+https://github.com/winstonjs/winston
+
+https://www.npmjs.com/package/morgan
+
+https://expressjs.com/en/resources/middleware/morgan/

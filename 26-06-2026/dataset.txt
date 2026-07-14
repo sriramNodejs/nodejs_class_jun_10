@@ -1,0 +1,309 @@
+db.employees.insertMany([
+{
+    name: "John Doe",
+    age: 25,
+    salary: 50000,
+    department: "IT",
+    status: "Active",
+    skills: ["Node.js", "MongoDB", "Docker"],
+    address: {
+        city: "Hyderabad",
+        state: "Telangana",
+        country: "India"
+    },
+    projects: [
+        {
+            name: "Inventory System",
+            budget: 50000
+        },
+        {
+            name: "CRM Portal",
+            budget: 80000
+        }
+    ],
+    joiningDate: ISODate("2023-01-15")
+},
+{
+    name: "Mary Smith",
+    age: 30,
+    salary: 70000,
+    department: "HR",
+    status: "Active",
+    skills: ["Recruitment", "Training"],
+    address: {
+        city: "Bangalore",
+        state: "Karnataka",
+        country: "India"
+    },
+    projects: [
+        {
+            name: "Hiring Drive",
+            budget: 30000
+        }
+    ],
+    joiningDate: ISODate("2022-06-10")
+},
+{
+    name: "David Johnson",
+    age: 35,
+    salary: 90000,
+    department: "IT",
+    status: "Inactive",
+    skills: ["Java", "AWS", "Kubernetes"],
+    address: {
+        city: "Chennai",
+        state: "Tamil Nadu",
+        country: "India"
+    },
+    projects: [
+        {
+            name: "Cloud Migration",
+            budget: 150000
+        }
+    ],
+    joiningDate: ISODate("2021-02-20")
+},
+{
+    name: "Sarah Wilson",
+    age: 28,
+    salary: 65000,
+    department: "Finance",
+    status: "Active",
+    skills: ["Excel", "Accounting"],
+    address: {
+        city: "Mumbai",
+        state: "Maharashtra",
+        country: "India"
+    },
+    projects: [
+        {
+            name: "Audit System",
+            budget: 70000
+        }
+    ],
+    joiningDate: ISODate("2023-03-18")
+},
+{
+    name: "Michael Brown",
+    age: 40,
+    salary: 120000,
+    department: "IT",
+    status: "Active",
+    skills: ["Node.js", "AWS", "MongoDB"],
+    address: {
+        city: "Hyderabad",
+        state: "Telangana",
+        country: "India"
+    },
+    projects: [
+        {
+            name: "ERP System",
+            budget: 200000
+        }
+    ],
+    joiningDate: ISODate("2020-05-12")
+},
+{
+    name: "Emma Davis",
+    age: 27,
+    salary: 55000,
+    department: "Marketing",
+    status: "Active",
+    skills: ["SEO", "Content Marketing"],
+    address: {
+        city: "Pune",
+        state: "Maharashtra",
+        country: "India"
+    },
+    projects: [
+        {
+            name: "Digital Campaign",
+            budget: 40000
+        }
+    ],
+    joiningDate: ISODate("2024-01-01")
+},
+{
+    name: "Robert Taylor",
+    age: 32,
+    salary: 85000,
+    department: "IT",
+    status: "Active",
+    skills: ["Python", "MongoDB", "Docker"],
+    address: {
+        city: "Bangalore",
+        state: "Karnataka",
+        country: "India"
+    },
+    projects: [
+        {
+            name: "Analytics Platform",
+            budget: 100000
+        }
+    ],
+    joiningDate: ISODate("2022-09-05")
+},
+{
+    name: "Sophia Martin",
+    age: 29,
+    salary: 60000,
+    department: "HR",
+    status: "Inactive",
+    skills: ["Payroll", "Recruitment"],
+    address: {
+        city: "Hyderabad",
+        state: "Telangana",
+        country: "India"
+    },
+    projects: [
+        {
+            name: "Employee Portal",
+            budget: 50000
+        }
+    ],
+    joiningDate: ISODate("2023-07-20")
+},
+{
+    name: "James Anderson",
+    age: 31,
+    salary: 95000,
+    department: "Finance",
+    status: "Active",
+    skills: ["Taxation", "Auditing"],
+    address: {
+        city: "Chennai",
+        state: "Tamil Nadu",
+        country: "India"
+    },
+    projects: [
+        {
+            name: "Tax Management",
+            budget: 120000
+        }
+    ],
+    joiningDate: ISODate("2021-11-15")
+},
+{
+    name: "Olivia Thomas",
+    age: 26,
+    salary: 58000,
+    department: "Marketing",
+    status: "Active",
+    skills: ["SEO", "Social Media"],
+    address: {
+        city: "Bangalore",
+        state: "Karnataka",
+        country: "India"
+    },
+    projects: [
+        {
+            name: "Brand Promotion",
+            budget: 45000
+        }
+    ],
+    joiningDate: ISODate("2024-02-01")
+}
+]);
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a42796e920d11d9c59df8a3'),
+    '1': ObjectId('6a42796e920d11d9c59df8a4'),
+    '2': ObjectId('6a42796e920d11d9c59df8a5'),
+    '3': ObjectId('6a42796e920d11d9c59df8a6'),
+    '4': ObjectId('6a42796e920d11d9c59df8a7'),
+    '5': ObjectId('6a42796e920d11d9c59df8a8'),
+    '6': ObjectId('6a42796e920d11d9c59df8a9'),
+    '7': ObjectId('6a42796e920d11d9c59df8aa'),
+    '8': ObjectId('6a42796e920d11d9c59df8ab'),
+    '9': ObjectId('6a42796e920d11d9c59df8ac')
+  }
+}
+
+// ─────────────────────────────────────────────
+// performance_reviews collection
+// linked to employees via employee_id
+// ─────────────────────────────────────────────
+db.performance_reviews.insertMany([
+  {
+    employee_id: ObjectId("6a42796e920d11d9c59df8a3"), // John Doe
+    reviewYear: 2023,
+    rating: 4,
+    comments: "Excellent performance in Inventory System.",
+    bonus: 5000,
+    reviewedBy: "Manager A"
+  },
+  {
+    employee_id: ObjectId("6a42796e920d11d9c59df8a4"), // Mary Smith
+    reviewYear: 2023,
+    rating: 5,
+    comments: "Outstanding contribution to the Hiring Drive.",
+    bonus: 8000,
+    reviewedBy: "Manager B"
+  },
+  {
+    employee_id: ObjectId("6a42796e920d11d9c59df8a5"), // David Johnson
+    reviewYear: 2023,
+    rating: 3,
+    comments: "Needs improvement in cloud cost management.",
+    bonus: 2000,
+    reviewedBy: "Manager A"
+  },
+  {
+    employee_id: ObjectId("6a42796e920d11d9c59df8a6"), // Sarah Wilson
+    reviewYear: 2023,
+    rating: 4,
+    comments: "Solid work on the Audit System.",
+    bonus: 4500,
+    reviewedBy: "Manager C"
+  },
+  {
+    employee_id: ObjectId("6a42796e920d11d9c59df8a7"), // Michael Brown
+    reviewYear: 2023,
+    rating: 5,
+    comments: "Led the ERP System delivery flawlessly.",
+    bonus: 15000,
+    reviewedBy: "Manager A"
+  },
+  {
+    employee_id: ObjectId("6a42796e920d11d9c59df8a8"), // Emma Davis
+    reviewYear: 2023,
+    rating: 4,
+    comments: "Great results from the Digital Campaign.",
+    bonus: 4000,
+    reviewedBy: "Manager D"
+  },
+  {
+    employee_id: ObjectId("6a42796e920d11d9c59df8a9"), // Robert Taylor
+    reviewYear: 2023,
+    rating: 5,
+    comments: "Analytics Platform exceeded expectations.",
+    bonus: 10000,
+    reviewedBy: "Manager A"
+  },
+  {
+    employee_id: ObjectId("6a42796e920d11d9c59df8aa"), // Sophia Martin
+    reviewYear: 2023,
+    rating: 2,
+    comments: "Performance declined after Q2.",
+    bonus: 0,
+    reviewedBy: "Manager B"
+  },
+  {
+    employee_id: ObjectId("6a42796e920d11d9c59df8ab"), // James Anderson
+    reviewYear: 2023,
+    rating: 4,
+    comments: "Tax Management delivered on time.",
+    bonus: 6000,
+    reviewedBy: "Manager C"
+  },
+  {
+    employee_id: ObjectId("6a42796e920d11d9c59df8ac"), // Olivia Thomas
+    reviewYear: 2023,
+    rating: 3,
+    comments: "Good effort on Brand Promotion but targets missed.",
+    bonus: 1500,
+    reviewedBy: "Manager D"
+  }
+]);

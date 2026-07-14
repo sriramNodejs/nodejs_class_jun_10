@@ -1,0 +1,16 @@
+e commerce application
+
+
+app.js 
+    routes
+        user
+            orders
+                5 -> GET , POST, PUT, PATCH, DELETE
+            addresses
+                5 -> GET , POST, PUT, PATCH, DELETE
+        seller 
+            products
+                5 -> GET , POST, PUT, PATCH, DELETE
+        admin
+            users
+                5 -> GET , POST, PUT, PATCH, DELETE

@@ -1,0 +1,17 @@
+// Stream will do data transfer chunk by chunk 
+
+
+
+fs.writefile('name.txt', content)
+// create a file (5gb) -> take data from input and load in the RAM , 
+// we use stream 
+
+1. Readable stream 
+2. writeable stream 
+3. duplx stream 
+4. Transform stream 
+
+
+
+Readable stream 
+it will read data in streams format 

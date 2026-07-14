@@ -1,0 +1,223 @@
+Git and Github
+
+
+What is Git. 
+
+Git is a VCS (Version Controlling System) Software which runs offline in your computer, which you have to install in your computer.
+
+Go to google and then search for "git download"
+https://git-scm.com/install/source
+and select your OS and download 
+
+you can use git commands 
+like git init 
+
+
+What is Github -> 
+Github is a Online Code Repository. (we can store our code in online)
+
+
+
+how to create a git project 
+1. git init (initializing the Git)
+2. ignore some files ? 
+    by using .gitignore file 
+
+3. how to rename a branch 
+go to that branch and use git branch -m <new_name>
+
+
+
+before pushing the changes in the github you have to create or use a github account .
+
+go to github.com and then signup or login (if you have your account )
+
+in git individual project is called Repo or Repository.
+we have to create the Repository.
+
+go to top right corner and repositories 
+and then new 
+give name, description
+
+
+how we connect the local git to github 
+
+2 ways 
+1. SSH (Secured Shell)
+2. HTTPS (Hypertext transfer Protocol Secured)
+
+
+1. SSH
+
+connecting local to github.com account -> 
+
+we have to generate a ssh key
+ssh-keygen -t ed25519 -C "dsriram50404@gmail.com"
+
+ssh-keygen -t ed25519_nodejs_class -C "dsriram50404@gmail.com"
+
+ssh-keygen -t rsa -b 4096 -C "dsriram50404@gmail.com"
+
+
+ssh-keygen -t rsa -b 4096 -C "dsriram50404@gmail.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/sriram/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/sriram/.ssh/id_rsa
+Your public key has been saved in /home/sriram/.ssh/id_rsa.pub
+
+after that 
+
+cat means -> you can see 
+
+cat ~/.ssh/id_rsa.pub
+
+after that copy the content 
+
+go to the github settings (top right corner)
+then ssh and gpg keys 
+new ssh key
+
+connect with the repo
+
+
+git configuration 
+git local configuration 
+git config --local user.email "dsriram50404@gmail.com"
+git config --local user.name "sriramNodejs"
+
+
+git config --global user.email "dsriram50404@gmail.com"
+git config --global user.name "sriramNodejs"
+
+
+// git add . (adding all files to the staging area)
+// git commit -m "message"
+
+
+
+git remote set-url origin git@github-coaching-nodejs:sriramNodejs/nodejs_class_jul_13.git
+git push -u origin main
+
+it is done and you can make your changes
+
+
+
+now we will see HTTPS
+you have to give every time your password 
+
+HTTPS 
+
+first create a REPO,
+and then 
+in your current folder 
+git init
+change branch master to main
+ git branch -m main
+
+ create a gitignore file
+ add some conent if you need
+
+ then in github.com
+ go to settings
+ developer settings
+ personal access token(PAT)
+ tokens (classic)
+
+ generate a new token
+ generate new token(classic)
+
+ generate token
+
+ set the configuration in local folder
+ git config --global user.email "dsriram50404@gmail.com"
+git config --global user.name "sriramNodejs"
+
+
+ git config --local user.email "dsriram50404@gmail.com"
+git config --local user.name "sriramNodejs"
+
+git add .
+git commit -m "commit message"
+git remote add origin https://sriramNodejs@github.com/sriramNodejs/nodejs_morning_repo.git (inject username into your url)
+
+git push -u origin main
+
+git config --global credential.helper manager
+
+// for updation 
+git remote set-url origin https://sriramNodejs@github.com/sriramNodejs/nodejs_git_http_repo.git
+
+
+while pushing code if it asks for password you have to give your generate PAT(personal access token)
+
+
+
+Q. how can we see the changes 
+
+git status
+
+Q. how you can see your code level changes 
+
+by using git diff
+
+git diff <your file name>
+
+add in staging area (git add .) . means all, you can add individually by git add <filename>
+and then commit  (git commit -m "commit message")
+
+and then push you changes 
+git push origin <branch name>
+
+how you can see your origins (git remote -v)
+
+
+1.branches 
+
+work separately
+
+in your project multiple developers are there 
+
+how you can work separately 
+
+by using branches
+
+
+how to see branches in git 
+git branch (for local)
+
+// for all branches 
+git branch -a
+
+
+// how to go to the another branch
+git checkout <branch name>
+git switch <branch name>
+
+
+how to create a branch in Git
+
+a branch will created from another branch
+
+2 commands (create and switch to that branch)
+
+1. git checkout -b <new branch name>
+2. git switch -c <new branch name>
+
+
+how to push your branch to online(remote (github.com))
+git push origin <branch-name>
+
+how to pull from a branch (online branch)
+git pull origin <branch name>
+
+
+// PR(pull request)
+
+
+// recommendation
+when you want to push your changes, pull first from main branch , so that you can see new changes from main branch and you can easily merge
+
+
+ git config pull.rebase false 

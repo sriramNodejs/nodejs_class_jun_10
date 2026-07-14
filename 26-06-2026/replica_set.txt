@@ -1,0 +1,38 @@
+docker compose -f docker-compose-replica.yml up -d
+
+
+check for replica set
+docker compose -f docker-compose-replica.yml logs mongo-init
+
+
+rs0 is the replica and the server role is primary 
+
+
+
+mongosh "mongodb://localhost:27017"
+
+
+A -> Atomicity
+C -> consistancy 
+I -> isolation
+D -> Durability
+
+
+Transactions are ACID COmpliance, means 
+
+
+
+Replication means Duplication 
+
+Replica Set -> Database have to at least one Replica set for transactions otherwise we can't use transactions 
+
+Different Replica set are there
+
+1. Read Replica   -> many read replica 
+2. Write Replica  -> only one write Replica (adding, removing, updating)
+
+
+Replica means -> copy of the database 
+
+
+if write replica is crashed or died, automatic election process will initiated and then , after that one replica who won that become write replica and other replicas are becoming read replicas.

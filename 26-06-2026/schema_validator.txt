@@ -1,0 +1,266 @@
+Use MongoDB schema validation with a collection validator, usually using $jsonSchema.
+
+For a new collection
+
+Create the collection with a validator.
+Define required fields and BSON types.
+Choose strict or moderate mode.
+Example in mongosh:
+
+db.createCollection("employees", {
+validator: {
+$jsonSchema: {
+bsonType: "object",
+required: ["name", "age", "address", "projects", "joiningDate"],
+properties: {
+name: {
+bsonType: "string",
+minLength: 2,
+description: "must be a string and is required"
+},
+age: {
+bsonType: "int",
+minimum: 18,
+maximum: 70,
+description: "must be an int between 18 and 70"
+},
+salary: {
+bsonType: ["int", "double", "long", "decimal"],
+minimum: 0
+},
+department: {
+enum: ["IT", "HR", "Finance", "Marketing"]
+},
+status: {
+enum: ["Active", "Inactive"]
+},
+address: {
+bsonType: "object",
+required: ["city", "state", "country"],
+properties: {
+city: { bsonType: "string" },
+state: { bsonType: "string" },
+country: { bsonType: "string" }
+}
+},
+projects: {
+bsonType: "array",
+minItems: 1,
+items: {
+bsonType: "object",
+required: ["name", "budget"],
+properties: {
+name: { bsonType: "string" },
+budget: { bsonType: ["int", "double", "long", "decimal"], minimum: 0 }
+}
+}
+},
+joiningDate: {
+bsonType: "date"
+}
+}
+}
+},
+validationLevel: "strict",
+validationAction: "error"
+})
+
+// for bypassing
+db.employees.insertOne(
+|   { name: "Invalid Data", age: "Not An Integer" },
+|   { bypassDocumentValidation: true }
+| )
+
+to remove validation 
+db.runCommand({
+|   collMod: "employees",
+|   validator: {},
+|   validationLevel: "off"
+| });
+
+
+
+For an existing collection
+
+Use collMod:
+
+db.runCommand({
+collMod: "employees",
+validator: {
+$jsonSchema: {
+bsonType: "object",
+required: ["name", "address", "projects", "joiningDate"]
+}
+},
+validationLevel: "strict",
+validationAction: "error"
+})
+
+Modes you should know
+
+validationAction
+
+error: reject invalid writes
+
+warn: allow write, log warning
+
+validationLevel
+
+strict: validates all inserts and updates
+
+moderate: validates inserts and updated fields mainly for existing docs migration scenarios
+
+Quick test
+
+Insert valid document, should succeed.
+Insert invalid document, should fail with document validation error.
+
+
+
+Use this for a completely new collection, for example employee_documents, with schema validation enabled from day 1.
+
+
+use test
+
+db.createCollection("employee_documents", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["employee_id", "docType", "docNumber", "issuedOn", "expiryOn", "status"],
+      properties: {
+        employee_id: {
+          bsonType: "objectId",
+          description: "must link to employees._id"
+        },
+        docType: {
+          enum: ["Passport", "Aadhaar", "PAN", "DrivingLicense"]
+        },
+        docNumber: {
+          bsonType: "string",
+          minLength: 4
+        },
+        issuedOn: {
+          bsonType: "date"
+        },
+        expiryOn: {
+          bsonType: "date"
+        },
+        status: {
+          enum: ["Active", "Expired", "Revoked"]
+        },
+        meta: {
+          bsonType: "object",
+          properties: {
+            country: { bsonType: "string" },
+            notes: { bsonType: "string" }
+          }
+        }
+      }
+    }
+  },
+  validationLevel: "strict",
+  validationAction: "error"
+})
+
+
+
+Insert valid data:
+
+db.employee_documents.insertOne({
+  employee_id: ObjectId("6a37b8dc74c5f211f19df8a3"),
+  docType: "Passport",
+  docNumber: "P1234567",
+  issuedOn: ISODate("2022-01-10"),
+  expiryOn: ISODate("2032-01-09"),
+  status: "Active",
+  meta: {
+    country: "India",
+    notes: "Primary ID proof"
+  }
+})
+
+Test validation failure (wrong type + missing required style):
+
+db.employee_documents.insertOne({
+  employee_id: "6a37b8dc74c5f211f19df8a3",   // should be ObjectId
+  docType: "VoterID",                         // not allowed in enum
+  docNumber: 12345,                           // should be string
+  status: "Active"
+})
+
+
+// with nodejs client 
+
+import { MongoClient } from "mongodb";
+
+const uri = "mongodb://root:secretpassword@localhost:27019/?authSource=admin";
+const client = new MongoClient(uri);
+
+async function run() {
+  await client.connect();
+  const db = client.db("test");
+
+  // Create new collection with schema validator
+  await db.createCollection("employee_documents", {
+    validator: {
+      $jsonSchema: {
+        bsonType: "object",
+        required: ["employee_id", "docType", "docNumber", "issuedOn", "status"],
+        properties: {
+          employee_id: { bsonType: "objectId" },
+          docType: { enum: ["Passport", "Aadhaar", "PAN", "DrivingLicense"] },
+          docNumber: { bsonType: "string", minLength: 4 },
+          issuedOn: { bsonType: "date" },
+          expiryOn: { bsonType: ["date", "null"] },
+          status: { enum: ["Active", "Expired", "Revoked"] }
+        }
+      }
+    },
+    validationLevel: "strict",
+    validationAction: "error"
+  });
+
+  // Valid insert
+  await db.collection("employee_documents").insertOne({
+    employee_id: new (await import("mongodb")).ObjectId("6a37b8dc74c5f211f19df8a3"),
+    docType: "Passport",
+    docNumber: "P1234567",
+    issuedOn: new Date("2022-01-10"),
+    expiryOn: new Date("2032-01-09"),
+    status: "Active"
+  });
+
+  // Invalid insert example (will throw MongoServerError code 121)
+  try {
+    await db.collection("employee_documents").insertOne({
+      employee_id: "6a37b8dc74c5f211f19df8a3", // wrong type
+      docType: "VoterID", // not in enum
+      docNumber: 12345, // wrong type
+      issuedOn: new Date(),
+      status: "Active"
+    });
+  } catch (err) {
+    console.log("Validation failed as expected:", err.code, err.message);
+  }
+
+  await client.close();
+}
+
+run().catch(console.error);
+
+
+For an existing collection, use collMod from Node.js:
+
+await db.command({
+  collMod: "employees",
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["name", "address", "projects", "joiningDate"]
+    }
+  },
+  validationLevel: "strict",
+  validationAction: "error"
+});
+
+

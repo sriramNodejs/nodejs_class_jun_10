@@ -1,0 +1,80 @@
+for new collection
+
+db.createCollection("users", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: [ "name", "email", "age" ],
+      properties: {
+        name: {
+          bsonType: "string",
+          description: "Must be a string and is required."
+        },
+        email: {
+          bsonType: "string",
+          pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+          description: "Must be a valid email address string and is required."
+        },
+        age: {
+          bsonType: "int",
+          minimum: 18,
+          maximum: 120,
+          description: "Must be an integer between 18 and 120 and is required."
+        },
+        status: {
+          bsonType: "string",
+          enum: [ "active", "pending", "inactive" ],
+          description: "Can only be one of the allowed string values."
+        }
+      }
+    }
+  },
+  validationLevel: "strict",
+  validationAction: "error"
+})
+
+db.users.insertOne({
+  "age":19,
+  "status":"hello"
+}, { bypassDocumentValidation: true })
+
+
+for removing validation
+
+db.runCommand({
+  collMod: "users",
+  validator: {}
+})
+
+// for bypassing the validation
+db.users.insertOne(
+  { name: "John Doe", email: "invalid-email-format" }, // Fails regular expression check
+  { bypassDocumentValidation: true }
+)
+
+// to see the validtion rules 
+db.getCollectionInfos({ name: "users" })
+
+
+db.runCommand({
+  collMod: "users",
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: [ "name", "email" ],
+      properties: {
+        name: {
+          bsonType: "string",
+          description: "Must be a string and is required."
+        },
+        email: {
+          bsonType: "string",
+          pattern: "^\\S+@\\S+\\.\\S+$",
+          description: "Must be a valid email format."
+        }
+      }
+    }
+  },
+  validationLevel: "strict",
+  validationAction: "error"
+})

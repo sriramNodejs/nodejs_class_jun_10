@@ -1,0 +1,17 @@
+SMTP -> simple mail Transport Protocol 
+
+HTTP -> 
+
+
+for sending mails we use nodemailer
+
+
+nodemailer documetation ->  https://nodemailer.com/
+
+
+go to your gmail , 
+go to myaccounts 
+search two setup verificatiion -> if off turn it on 
+and then in the search for app password -> create app password -> give the app password name and copy the app password 
+
+

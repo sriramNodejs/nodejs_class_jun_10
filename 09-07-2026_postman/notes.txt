@@ -1,0 +1,95 @@
+POSTMAN
+
+what is Postman ?
+
+Postman is a API Client Tool, which is used for Testing API's 
+
+HTTP API's -> we are using REST APIs;
+
+
+how to use API's 
+
+
+
+http://locahost:3000/user/create 
+
+you are using in browser only (pure js , React, Angular, Vue , Svelte)
+
+as a backend developer you dont have any knowledge about These things (pure js , React, Angular, Vue , Svelte)
+
+so you have to test this API's 
+
+thats why POSTMAN will come into picture.
+
+Competetor -> Insomnia Client 
+
+
+how to use postman , 
+
+
+POSTMAN is a SOftware and website also , 
+
+1. software version
+how to download and install POSTMAN 
+https://www.postman.com/downloads/
+
+then download and install it 
+
+after that signup using any one method, (google.com, email, github, etc)
+
+
+2. website version 
+
+go to https://www.postman.com/
+and signup or sign in then you can use postman 
+
+
+
+
+Local  -> dev   -> localhost;3000
+
+QA -> testing   -> 192.169.8.9
+
+Production  -> Live  -> 189.169.8.9
+
+
+
+
+state management 
+
+HTTP 
+
+
+
+signup and login
+
+
+signup -> you register with them (adding a record in their database )
+
+after signup you can eligible to login and user their functionalities 
+
+
+after login the may give tokens, (key or unique key -> which has your data)
+
+
+profile -> protected
+
+
+// cart 
+// orders 
+
+
+
+
+
+// how to optimize your APIs
+
+if your api have not urgent tasks , (remove the tasks)
+and if your api is calling same database (use indexes, and you can cache the data also)
+and you can use Queue also 
+RabbitMQ
+
+
+tcp , udp
+
+webRTC -> 

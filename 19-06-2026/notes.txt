@@ -1,0 +1,28 @@
+Middlewares 
+
+A Middleware is a special type of function , which affects reqest response cycle.
+
+Middleware is a function 
+
+() => {}
+
+Security Guard
+
+Types of Middlewares
+
+1. Application Level Middleware  -> express.json()
+2. Router Level Middleware -> any custom middlewares 
+3. Route Level Middleware -> any custom middlewares 
+4. Error Handling Middleware
+5. Third Party Middleware
+6. Built in Middleware  -> express.json()
+7. Custom Middlewares
+
+
+
+How to pass data with API 
+
+1. Request Body
+2. Request Query
+3. Request Params 
+4. Request Headers

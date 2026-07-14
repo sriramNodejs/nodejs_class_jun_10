@@ -1,0 +1,106 @@
+// Create
+db.employees.createIndex({ department: 1 })
+
+// List
+db.employees.getIndexes()
+
+// Drop
+db.employees.dropIndex({ department: 1 })
+
+// Check usage plan
+db.employees.find({ department: "IT" }).explain("executionStats")
+
+
+What to look for in explain:
+
+IXSCAN means index used
+COLLSCAN means full scan (slow on large data)
+
+
+db.employees.createIndex({ department: 1, status: 1, joiningDate: -1 })
+
+
+db.employees.find({
+  department: "IT",
+  status: "Active",
+  joiningDate: { $gte: ISODate("2023-01-01") }
+}).sort({ joiningDate: -1 })
+
+
+Important rule:
+
+Left-prefix rule: this index helps department, department+status, department+status+joiningDate
+It does not efficiently help status alone
+
+
+3. Advanced Indexes
+
+Multikey index (arrays):
+
+db.employees.createIndex({ "projects.name": 1 })
+db.employees.find({ "projects.name": "CRM Portal" })
+
+
+Text index (search):
+
+db.performance_reviews.createIndex({ comments: "text" })
+db.performance_reviews.find({ $text: { $search: "excellent performance" } })
+
+TTL index (auto-delete old docs):
+
+db.sessions.createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 })
+
+
+db.employee_documents.createIndex({ docNumber: 1 }, { unique: true })
+
+
+Partial index (index subset only):
+
+db.employees.createIndex(
+  { department: 1, joiningDate: -1 },
+  { partialFilterExpression: { status: "Active" } }
+)
+
+Sparse index (only docs containing field):
+
+db.employees.createIndex({ tempAddress: 1 }, { sparse: true })
+
+
+Wildcard index (dynamic fields):
+
+db.employees.createIndex({ "meta.$**": 1 })
+
+
+4. Node.js Version
+
+import { MongoClient } from "mongodb";
+
+const client = new MongoClient("mongodb://root:secretpassword@localhost:27019/?authSource=admin");
+await client.connect();
+
+const db = client.db("test");
+const employees = db.collection("employees");
+
+// compound
+await employees.createIndex({ department: 1, status: 1, joiningDate: -1 });
+
+// multikey
+await employees.createIndex({ "projects.name": 1 });
+
+// partial
+await employees.createIndex(
+  { department: 1, joiningDate: -1 },
+  { partialFilterExpression: { status: "Active" } }
+);
+
+console.log(await employees.indexes());
+await client.close();
+
+
+5. Practical index set for your current data
+
+db.employees.createIndex({ name: 1 }, { unique: true })
+db.employees.createIndex({ "address.city": 1 })
+db.employees.createIndex({ "projects.name": 1 })
+db.employees.createIndex({ department: 1, status: 1, joiningDate: -1 })
+db.performance_reviews.createIndex({ employee_id: 1, reviewYear: -1 })

@@ -1,0 +1,13 @@
+what is express js ?
+
+Express is a minimalistic(simplistic) , flexible , unopiniated web application framework built on the top of NODEJS.
+
+Written in JS.
+
+
+Features of JS 
+1. Routing -> 
+2. Middleware Support 
+3. High performant 
+4. Unopiniated -> Service Layer Architechture, MVC (Model View Controller), 
+5. Fullstack -> MVC 

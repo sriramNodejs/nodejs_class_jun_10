@@ -1,0 +1,71 @@
+API Security ? 
+
+why Security 
+
+We Protect our API's or protect our application 
+
+
+// API rate limiting 
+/api/signin
+/api/signup
+
+Limit 10000 reqest per second 
+// after the limit it will stop responding 
+
+
+// Throtling techniques
+frontend side before sending API Request
+1. Captcha 
+2. Timer 
+
+backend side is there 
+1. rate limiting 
+    1. IP based 
+    2. User Based 
+
+
+// Authentication 
+
+
+// Authorization 
+
+
+
+/api/signin
+/api/signup 
+
+
+
+Party (Private)
+
+
+1. General Public 
+2. Invited Guests  -> VIP Guests (Special Advantages)
+
+
+
+// Not allowed -> general public  -> Not authenticated 
+// Invited guest -> normal  (blue band in their hand)
+                -> VIP (Red band in their hand)
+
+
+Authentication -> that user is known to us (the user present in our database)
+                -> the user is not signed up with us
+
+Authorization -> the user is signed up and have some advantages (previlages)
+
+
+// User management system 
+employees
+business head (investor , admin people)
+
+
+business head can enable and disable the employee -> 
+
+
+
+Security modules
+1. express-rate-limit
+2. helmet
+for database sanitization 
+3. express-mongo-sanitize

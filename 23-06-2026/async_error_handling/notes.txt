@@ -1,0 +1,44 @@
+Error Handling 
+
+// what is Error 
+anything wrong happens in our codebase (it is also called Exceptions);
+
+
+1. if the exception(error) is synchronous 
+we can use try catch block
+
+2. if the exception is callback based 
+fs.writefile('hello.txt', 'this is my file ', (err) => {
+    if(err){
+        console.log('error')
+        return;  // mandatory
+    }
+
+    console.log('file created successfully')
+})
+
+3. Promise based Error 
+const fs = require('fs/promises');
+
+// Then and catch block 
+fs.writefile('hello.txt', 'this is my file').then(() => {
+    console.log('file created successfully')
+}).catch((err) => {
+    console.log('error in file upload', err)
+})
+
+
+// Async await 
+const writeFileFn = async () => {
+    try{
+        await fs.writefile('hello.txt', 'this is my file')
+    }catch(err){
+       console.log('error in file upload', err) 
+    }
+}
+writeFileFn()
+
+
+
+
+// Global Error Handler

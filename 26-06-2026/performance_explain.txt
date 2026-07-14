@@ -1,0 +1,100 @@
+Performance optimization in MongoDB mostly comes down to reading explain plans and fixing indexes/query shape based on what you see.
+
+1. Explain Plan Basics
+Run with execution stats:
+
+db.employees.find({ department: "IT", status: "Active" })
+  .sort({ joiningDate: -1 })
+  .explain("executionStats")
+
+  Modes:
+
+queryPlanner: chosen plan only
+executionStats: real execution counters (most useful)
+allPlansExecution: compares candidate plans
+2. What to Check First
+Inside explain output, focus on:
+
+winningPlan.stage
+IXSCAN good
+COLLSCAN usually bad on large collections
+totalDocsExamined
+try to reduce this
+totalKeysExamined
+lower is better
+nReturned
+compare with docs examined
+executionTimeMillis
+wall time indicator
+Quick heuristic:
+If totalDocsExamined >> nReturned, query/index is inefficient.
+
+
+3. Example: Improve with Compound Index
+Query:
+
+db.employees.find({
+  department: "IT",
+  status: "Active",
+  joiningDate: { $gte: ISODate("2023-01-01") }
+}).sort({ joiningDate: -1 }).explain("executionStats")
+
+
+Index to support it:
+
+
+db.employees.createIndex({ department: 1, status: 1, joiningDate: -1 })
+
+
+Re-run explain and compare:
+
+COLLSCAN should become IXSCAN
+docs examined should drop
+4. Query Analysis Workflow
+Use this repeatable process:
+
+Capture slow/important query.
+Run explain("executionStats").
+Add or adjust index.
+Re-run explain.
+Keep only useful indexes (avoid index bloat).
+5. Extra Signals in Explain
+Look for:
+
+rejectedPlans: tells you alternative plans
+SORT stage: if present, DB is sorting in memory
+FETCH stage: normal, but too many fetches can be costly
+If you see explicit SORT, try index that matches filter + sort order.
+
+
+const cursor = db.collection("employees")
+  .find({ department: "IT", status: "Active" })
+  .sort({ joiningDate: -1 });
+
+const plan = await cursor.explain("executionStats");
+console.log({
+  stage: plan.executionStats.executionStages.stage,
+  nReturned: plan.executionStats.nReturned,
+  totalDocsExamined: plan.executionStats.totalDocsExamined,
+  totalKeysExamined: plan.executionStats.totalKeysExamined,
+  executionTimeMillis: plan.executionStats.executionTimeMillis
+});
+
+
+7. Practical Queries for Your Practice Data
+Run explain on these:
+
+db.employees.find({ "address.city": "Hyderabad" }).explain("executionStats")
+db.employees.find({ "projects.name": "CRM Portal" }).explain("executionStats")
+db.performance_reviews.find({ employee_id: ObjectId("6a37b8dc74c5f211f19df8a3") }).explain("executionStats")
+
+
+
+Recommended indexes:
+
+
+db.employees.createIndex({ "address.city": 1 })
+db.employees.createIndex({ "projects.name": 1 }) // multikey
+db.performance_reviews.createIndex({ employee_id: 1, reviewYear: -1 })
+
+

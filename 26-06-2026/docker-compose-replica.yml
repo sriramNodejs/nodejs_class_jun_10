@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo-local
+    ports:
+      - "27017:27017"
+    # Starts mongo with replica set configuration
+    command: ["--replSet", "rs0", "--bind_ip_all"]
+
+    volumes:
+      - mongo-data:/data/db
+
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  mongo-init:
+    image: mongo:latest
+    depends_on:
+      mongo:
+        condition: service_healthy
+    # Automatically running initialization once the main mongo container is healthy
+    command: >
+      mongosh --host mongo:27017 --eval "
+        try {
+          rs.status();
+          console.log('Replica set already initialized');
+        } catch (e) {
+          rs.initiate({
+            _id: 'rs0',
+            members: [{ _id: 0, host: 'localhost:27017' }]
+          });
+          console.log('Replica set initialized successfully');
+        }
+      "
+# 2. DECLARE THE NAMED VOLUME AT THE VERY BOTTOM OF THE FILE
+volumes:
+  mongo-data:
