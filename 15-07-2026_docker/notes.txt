@@ -1,0 +1,160 @@
+online repository is there , how to take that code into your computer ?
+
+incase of https
+
+git clone https://github.com/supuna97/expressjs-auth.git
+
+incase of ssh
+
+git clone git@github.com/supuna97/expressjs-auth.git
+
+
+
+Docker 
+
+what is docker 
+
+docker is a containerization tool , 
+
+what is containers ? (boxes)
+
+what docker will do ?
+
+docker is a open source (free to use) platform that packages applications and their dependencies into portable containers.
+
+
+nodejs repository is there .
+
+clone the repository
+and then install nodejs in your computer , and mongodb in you computer, and then npm install, 
+
+
+but when you pull a docker image, everything is inside the container , just you have to pull the container and run the container .
+
+
+
+you have installed docker in your system, and you created a docker image, you can send the image to other developer and then  they simply create conainer and run the container , 
+
+
+your computer dont have java application, but your colleque is giving a java based conainer , will it work or not ?
+
+our requirement for running docker is , only docker is installed in your system .
+
+
+how to create container.
+
+first we have to create a docker image.
+then build that image 
+and then your container is ready.
+
+
+// your docker having port 3000, by using port mapping, 
+my local port is 4000, and i am mapping to 3000 of my docker .
+
+and if you want to save some data , you can use volumes, (docker volume) -> it will create a space in your computer to save some data 
+
+ex. you are installed mongodb (as a docker container ), you have to store the data , you have to provide docker volume, so that in that place your data will be save, 
+
+image -> building process -> container
+
+docker hub, it will store images online and then you can pull from anywhere and build and run the containers.
+
+
+
+you have to install docker .
+
+
+how to install docker ?
+
+https://www.docker.com/products/docker-desktop/
+
+go to this link and download and install docker.
+
+if docker is not installing in your system , you have to enable virtualization for your system, you can get in BIOS Setting.
+
+
+
+for different technologies different docker images are there, simply you have to pull that image and you can use 
+
+
+Dockerfile ?
+
+it will modify the existing image 
+
+
+docker-compose.yml ?
+
+combine multiple docker images into one application
+
+
+
+// how to dockerize nodejs app
+first keep your project ready
+
+and then create Dockerfile
+
+and then build the docker image
+docker build -t <image_name> .
+
+ex. docker build -t docker-node-app .
+
+
+how to see images 
+docker images
+
+
+how to run 
+docker run -d -p 3000:3000 --name <container_name> <image_name>
+
+ex: docker run -d -p 3000:3000 --name nodejs-container docker-node-app
+
+-d (detach mode)
+
+
+how to stop container 
+docker stop <container_id or container_name>
+
+how to remove container 
+docker rm <container_id or container_name>
+
+how to stop and remove the container ?
+docker rm -f <container_id or container_name>
+
+to see all running continers 
+docker ps 
+
+how to see logs of docker image 
+docker logs <container_id or container_name>
+
+docker logs -f <container_id or container_name> (for realtime logs)
+
+
+// go to docker and signup 
+https://www.docker.com/
+
+and signup if you are not signed in 
+
+after sign in , login to docker in terminal
+
+docker login 
+
+
+and then tag the image
+docker tag <image_id> docker_username/<image_name>
+
+docker tag docker-node-app sriramnodejsdev/docker-node-app
+
+then push the image
+docker push sriramnodejsdev/docker-node-app
+
+
+how to pull this image
+
+docker pull sriramnodejsdev/docker-node-app
+verify (docker images)
+
+after that run the container using this image 
+
+docker run -d -p 3000:3000 --name nodejs-container sriramnodejsdev/docker-node-app
+
+docker logs -f nodejs-container
