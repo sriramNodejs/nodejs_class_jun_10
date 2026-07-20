@@ -1,0 +1,71 @@
+Microservices 
+
+
+Monolith Application or (monolithic application)
+
+what is monolithic application ?
+
+this is a single application handling all the incoming requests and processing and sending the response 
+
+e commerce monolithic application -> 
+
+order routes
+user routes
+product routes 
+
+all present inside one codebase 
+
+
+and in microservices 
+all routes are separated into smaller applications , that is called microservice application 
+
+every services are separate applications which connected to each other by using one main entry point called api-gateway
+
+
+
+in monolithic application 
+you are calling /product/:id
+
+first your request -> app.js (entry point file) => routes => product routes => controller => service  => give a response => carry over to the controller and controller gives the final response 
+
+
+
+but in microservice => 
+all microservice will interconnected to one api gateway
+
+4 applications
+
+1. api-gateway 
+2. product application
+3. user application
+4. order applications
+
+
+/product/:id
+request comes to => api-gateway => /product will goes to proudct application => /:id => this api will do the fetching of the product => it will give the response => response will go to api-gateway => api-gateway will give the final response to the user
+
+
+
+for microservice commumnication we will use different tools 
+
+rabbitMQ (message Queue) -> message brokers 
+kafka
+nats 
+
+
+Queue -> this is a Data structures uses First in First Out approach
+producer -> who produces the event 
+consumer -> who recevies and process the event 
+
+microservices commumnication will happen in two ways 
+1. RPC based  (Remote procedural Calls) -> 
+2. Event based  (you can fire and forget ) 
+
+
+
+// RabbitMQ Setup
+
+go to the below link and download and install
+
+https://www.rabbitmq.com/docs/download
+

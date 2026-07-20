@@ -1,0 +1,20 @@
+version: '3.8'
+
+# to start the first time use   docker compose up -d
+# to stop the container use   docker compose down
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq_class_jul_20
+    ports:
+      - "5672:5672"   # AMQP port for producers and consumers
+      - "15672:15672"   # web UI acess portal
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

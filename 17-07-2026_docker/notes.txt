@@ -1,0 +1,37 @@
+Multi containers , docker compose 
+
+for single container you can use Dockerfile, but for multi-container applications you should use docker-compose.yml, 
+
+and in docker compose you can use different services along with configurations
+
+
+you want to use mongodb, you want to give a username, and password, (changing the configuration), 
+1. Dockerfile (but it has limitation - cannot change environment variables at runtime, you cannot change the username and passwords) for changing username and passwords you have to use flags   --name, --password
+
+
+but in docker-compose.yml (use environment variables and volumes for persistent storage) without using flags 
+
+just docker compose start -> you can start the container 
+
+so we will see about docker compose (multi container setup) 
+
+expressjs application with mongodb
+
+
+// some commands
+
+how to build docker compose 
+docker compose up --build -d 
+
+how to see containers in this compose file 
+
+    docker compose ps 
+
+how to start the container 
+    docker compose start
+
+how to stop the container 
+    docker compose stop
+
+how to remove container
+    docker compose down
