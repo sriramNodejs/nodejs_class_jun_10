@@ -69,3 +69,23 @@ go to the below link and download and install
 
 https://www.rabbitmq.com/docs/download
 
+
+
+Sync and Async Producers and consumers we have seen.
+These are not wait 
+Producer sends the request , and consumer captures that do necessary processing (Sync and Async)
+
+
+
+i want is 
+Producer want to send the request but producer also want to receive  the response
+
+RPC Calls (Remote Procedure Calls) .
+
+RPC is a Design Pattern that allows a client application to execute function or a process on a remote server application and wait to receive the computed (calculated) results Back.
+
+
+RabbitMQ RPC pattern users two ways Request Reply Mechanism.
+and it uses Standard Advance Message Queuing Protocol (AMQP) and specific header properties to simulate a synchronous function  calls over a network.
+
+for RPC calls you need reply_to for client , and a correlation_id (which is a unique id for reply)
