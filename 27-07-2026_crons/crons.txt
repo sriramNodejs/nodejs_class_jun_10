@@ -1,0 +1,34 @@
+CRON Jobs 
+
+Scheduld tasks 
+
+i want a action which performs every 12:00 AM 
+
+HRM (Human Resource Management) -> check in , check out 
+
+
+10 employees are there 
+today is 1-1-2026 (5 employees checked in)
+tomorrow if 6th employee want to see the data (not there )
+
+
+i have ran a cronjob for daily 1:00 AM -.> if previous day employees record is not there simply create entry and mark as absent 
+
+
+the module for cron jobs is node-cron
+
+to check crons we can use crontab.guru
+
+
+
+// Using ESM syntax
+import cron from 'node-cron';
+
+// Schedule a task to run every minute
+cron.schedule('* * * * *', () => {
+
+  console.log('This message prints once every minute.');
+});
+
+
+https://crontab.guru/
