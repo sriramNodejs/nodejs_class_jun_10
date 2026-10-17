@@ -1,0 +1,32 @@
+Redis 
+
+
+what is redis
+
+Reis is a inmemory database, which is stored in RAM of your system, radis we can use for cache purpose,
+
+what is cache, 
+
+caching is a mechanism to store repeatedly asked queries in temporary storage, 
+
+we can use redis for cache purposes 
+
+
+
+THird party cache modules 
+
+redis 
+aws elastic cache
+
+
+
+how to install and download redis 
+
+in windows -> docker , WSL 
+
+
+you can use redis using programmetically and GUI is there, Redis Insights
+
+
+
+docker run -d --name modern-redis -p 6371:6379 redis:7-alpine

@@ -1,0 +1,34 @@
+what is Newman  ?
+
+Newman is a postman's CLI testing tool which is used for API testing
+
+
+npm install -g newman
+
+npm install -g newman-reporter-htmlextra
+
+
+create a collection.json and envrionment.json files
+
+// befor running test, server must be started
+
+// For Default
+newman run ordersCollection.json -e test_environment.json
+
+
+// For HTML Report
+newman run ordersCollection.json -e test_environment.json -r htmlextra
+
+// For multiple report formats
+newman run ordersCollection.json -e test_environment.json -r cli,json,htmlextra
+ 
+
+
+
+ // FOr testing in JEST
+
+
+ install jest and supertest in current project
+
+ 
+

@@ -1,0 +1,19 @@
+CORS
+
+Cross Origin Resource Sharing 
+
+
+This will apply on backend applications
+
+
+Backend application will allow only origins which it knows,
+
+
+our backend application will block all requests, 
+
+and frontend application like react, angular, vue, svelte, these will hit the backend apis 
+
+for the first time the request will go -> THe request is called preflight request which uses OPTIONS HTTP Method Type, 
+
+
+if your backend is not includes frontend server's url , frontend will receive CORS error,
